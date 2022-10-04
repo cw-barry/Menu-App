@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Menu from './Menu';
 import Categories from './Categories';
 import data from './data';
+import axios from 'axios';
 
 // const categories = ['all', 'breakfast', 'lunch', 'shakes'];
 
@@ -15,6 +16,15 @@ const categories = data.reduce(
 
 function App() {
   const [menu, setMenu] = useState(data);
+
+  useEffect(
+    () =>
+      axios
+        .get('https://cwbarry.pythonanywhere.com/menu/')
+        .then((res) => setMenu(res.data.menu))
+        .catch(() => setMenu(data)),
+    []
+  );
 
   const handleFilter = (selected) => {
     if (selected === 'all') setMenu(data);
