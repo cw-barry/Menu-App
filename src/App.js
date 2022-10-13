@@ -10,6 +10,7 @@ function App() {
   const [data, setData] = useState([]);
   const [menu, setMenu] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [mode, setMode] = useState('dark');
 
   useEffect(
     () =>
@@ -46,6 +47,13 @@ function App() {
   return (
     <main>
       <section className="menu section">
+        <div className="toggler">
+          <img
+            src={mode === 'dark' ? './images/off.svg' : './images/on.svg'}
+            alt="toggler"
+            onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+          />
+        </div>
         <div className="title">
           <h2>our menu</h2>
           <div className="underline"></div>
